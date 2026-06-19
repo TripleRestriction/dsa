@@ -19,11 +19,16 @@ void showArray(myArray * a){
 	}
 }
 
+void freeArray(myArray * a){
+	free(a->ptr);
+}
+
 int main(int argc, char *argv[]){
 	myArray array;
 	createArray(&array, 10, 2);
 	array.ptr[0] = 69;
 	array.ptr[1] = 67;
 	showArray(&array);
+	freeArray(&array);
 	return 0;
 }
