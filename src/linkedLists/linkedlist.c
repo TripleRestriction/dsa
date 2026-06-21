@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 typedef struct node{
 	int data;
 	struct node *next;
@@ -12,7 +13,8 @@ void traversal(node *headPtr){
 		headPtr = headPtr->next;
 	}
 }
-// my implementation
+// my implementations
+
 node* insertion(node *headPtr, size_t index, int value){
 	if(index == 0){
 		// change the head
@@ -33,12 +35,48 @@ node* insertion(node *headPtr, size_t index, int value){
 			newNode->data = value;
 			return newNode;
 		}
+		// for the last element in the list
 		else {
 			node *newNode = (node*)malloc(sizeof(node));
 			headPtr->next = newNode;
 			newNode->next = NULL;
 			newNode->data = value;
 			return newNode;
+		}
+	}
+}
+
+node* deletion(node *headPtr, size_t index){
+	if (index == 0){
+		// delete the head
+		node *newHead = headPtr->next;
+		free(headPtr);
+		return newHead;
+	}
+	else {
+		// for any other index
+		node *newLast;
+		for(size_t i = 0; i < index-1; i++){
+			// for the delete the last case, we need to save the pointer
+			headPtr = headPtr->next;
+			if (headPtr->next->next == NULL) {
+				newLast = headPtr;
+			}
+			else {
+				newLast = NULL;
+			}
+		}
+		if(headPtr->next != NULL){
+			node *ptr = headPtr->next;
+			headPtr->next = headPtr->next->next;
+			free(ptr);
+			return headPtr->next;
+		}
+		else {
+			// for last node
+			free(headPtr);
+			newLast->next = NULL;
+			return 0;
 		}
 	}
 }
@@ -63,6 +101,15 @@ int main(int argc, char *argv[])
 	traversal(head);
 	printf("Inserting new node\n");
 	node *newnode = insertion(head, 3, 40);
+	traversal(head);
+	printf("deleting head\n");
+	head = deletion(head, 0);
+	traversal(head);
+	printf("deleting element\n");
+	node *ptr = deletion(head, 1);
+	traversal(head);
+	printf("deleting last element\n");
+	deletion(head, 2);
 	traversal(head);
 	return 0;
 }
