@@ -24,7 +24,6 @@ void popOffStack(stack *s){
 	s->top = ptr->next;
 	free(ptr);
 }
-
 void printTopValue(stack *s){
 	if(s->top != NULL) printf("%c\n", s->top->data);
 }
@@ -55,5 +54,5 @@ int main(int argc, char *argv[])
 	else {
 		printf("unbalanced\n");
 	}
-	return 0;
+        return 0;
 }

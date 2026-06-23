@@ -27,7 +27,6 @@ void popOffStack(stack *s){
 	free(ptr);
 	s->nodes--;
 }
-
 void printTopValue(stack *s){
 	if(s->top != NULL) printf("%d\n", s->top->data);
 }
