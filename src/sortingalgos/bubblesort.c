@@ -6,7 +6,7 @@
 // and will be repeated again this entire process will be done several times (n
 // = number of passes), where n = size of array - 1 number of comparisons: n-1 +
 // n-2 + n-3 + ... + 1 = n(n-1)/2 therefore time complexity is O(n^2) the
-// algorithm is stable non adaptive algorithm, by default atleast called bubble
+// algorithm is stable non adaptive algorithm, by default atleast; called bubble
 // sort because smaller elements come to one side like bubbles come to the top
 #include <stddef.h>
 #include <stdio.h>
